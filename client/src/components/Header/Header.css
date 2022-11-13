@@ -1,0 +1,11 @@
+.nav-links .active{
+    color: red !important;
+}
+
+.nav-links .nav-link:hover{
+    color: #9c27b0;
+}
+
+.nav-links{
+    text-decoration: none;
+}
