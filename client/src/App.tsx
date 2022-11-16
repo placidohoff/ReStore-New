@@ -1,6 +1,6 @@
 import { Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { useState } from "react";
-import { Route, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Catalog from "./components/catalog/Catalog";
 import Header from "./components/Header/Header";
@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage";
 import ProductDetails from "./pages/ProductDetails";
 import 'react-toastify/dist/ReactToastify.css';
 import ServerError from "./components/Errors/ServerError";
+import NotFound from "./components/Errors/NotFound";
 
 
 function App() {
@@ -33,10 +34,11 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <ToastContainer position="bottom-right" hideProgressBar />
-          <CssBaseline />
-          {/* ^^Removes the default padding and margins */}
-          <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
-          <Container>
+        <CssBaseline />
+        {/* ^^Removes the default padding and margins */}
+        <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
+        <Container>
+          <Switch>
             {/* <Catalog /> */}
             <Route path='/' exact component={HomePage} />
             <Route path='/catalog' exact component={Catalog} />
@@ -44,7 +46,9 @@ function App() {
             <Route path='/about' component={AboutPage} />
             <Route path='/contact' component={Contact} />
             <Route path='/server-error' component={ServerError} />
-          </Container>
+            <Route component={NotFound} />
+          </Switch>
+        </Container>
       </ThemeProvider>
 
     </>
